@@ -22,13 +22,13 @@
   "basecurrency":"btc",
   "lightningonly":"true",
   "fiat":{
-    "default":"EUR",
-    "denomination": "EUR",
-    "symbol": "€"
+    "default":"GBP",
+    "denomination": "GBP",
+    "symbol": "£"
   },
   "testnet":"false",
   "btcadress":"",
-  "lightningaddress":"cypher@npub.cash",
+  "lightningaddress":"yojimble@getalby.com",
   "orderwebhook":"",
   "nostr":true,
   "footerlanguage":true,
@@ -38,7 +38,7 @@
      "facebook":"",
      "instagram":"",
      "twitter":"",
-     "github":"https://github.com/cypher-space",
+     "github":"",
      "discord":"",
      "dribble":"",
      "linkedin":"",

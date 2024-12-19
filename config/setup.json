@@ -2,7 +2,7 @@
   "version": "1.0.2 Beta",
   "initsetup": true,
   "maintenancemode": false,
-  "nostradmin":"npub1equrmqway3qxw3dkssymusxkwgwrqypfgeqx0lx9pgjam7gnj4ysaqhkj6",
+  "nostradmin":"npub1me67k8t6vcncq75dlu8mxd70euvful56lz4ky20k3rmxgugvxq2qy23gnm",
   "relays":["wss://relay.damus.io"],
   "name":"Cypher.Space",
   "tagline":"Setup a Bitcoin Only Business",

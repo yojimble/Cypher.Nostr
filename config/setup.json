@@ -19,7 +19,7 @@
   "cart":"bitcoinconnect",
   "checkout":"full",
   "localid":"Name / Handle",
-  "basecurrency":"GBP",
+  "basecurrency":"btc",
   "lightningonly":"true",
   "fiat":{
     "default":"GBP",
@@ -36,13 +36,13 @@
   "footertheme":true,
   "socialnavigation":{
      "facebook":"",
-     "instagram":"www.instagram.com/jimblesjumble",
+     "instagram":"https://www.instagram.com/jimblesjumble",
      "twitter":"",
      "github":"",
      "discord":"",
      "dribble":"",
      "linkedin":"",
-     "telegram":"",
-     "nostr":"njump.me/yojimble@stackernews.com"
+     "telegram":""
+     "nostr":"https://njump.me/yojimble@stackernews.com"
   }
 }

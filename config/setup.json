@@ -31,7 +31,7 @@
   "lightningaddress":"yojimble@getalby.com",
   "orderwebhook":"",
   "nostr":true,
-  "footerlanguage":true,
+  "footerlanguage":false,
   "footersocials":true,
   "footertheme":true,
   "socialnavigation":{
@@ -43,6 +43,6 @@
      "dribble":"",
      "linkedin":"",
      "telegram":"",
-     "nostr":""
+     "nostr":"njump.me/yojimble@stackernews.com"
   }
 }

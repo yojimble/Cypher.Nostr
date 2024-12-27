@@ -27,7 +27,7 @@
     "symbol": "£"
   },
   "testnet": false,
-  "btcadress": "1vongcL7yn7HCf8Qa3QCwe4uhrxKTLpdf",
+  "btcadress": "",
   "lightningaddress": "yojimble@getalby.com",
   "orderwebhook": "https://discord.com/api/webhooks/1320836193654542377/BPbGn73_-j0asZlt6iWpoHWoWcp6NhtSXMYlFQXPmxvSEbkR4FuMSaSgAPkUXCPK228S",
   "nostr": true,

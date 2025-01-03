@@ -16,7 +16,7 @@
   "blog": true,
   "shop": true,
   "contact": true,
-  "cart": "bitcoinconnect",
+  "cart": "latest",
   "checkout": "full",
   "localid": "Name / Handle",
   "basecurrency": "btc",

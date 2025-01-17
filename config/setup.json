@@ -19,7 +19,7 @@
   "cart": "latest",
   "checkout": "full",
   "localid": "Name / Handle",
-  "basecurrency": "GBP",
+  "basecurrency": "BTC",
   "lightningonly": true,
   "fiat": {
     "default": "GBP",

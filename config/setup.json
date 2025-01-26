@@ -2,7 +2,7 @@
   "version": "1.0.2 Beta",
   "initsetup": true,
   "maintenancemode": false,
-  "nostradmin": "npub1me67k8t6vcncq75dlu8mxd70euvful56lz4ky20k3rmxgugvxq2qy23gnm",
+  "nostradmin": "npub1xa8wjw3n7wm0zq2rycqc856hmcgcf26ax8r9m2m8wjwwwdnzxdrsr64spj",
   "relays": ["wss://relay.damus.io", "wss://nos.lol"],
   "name": "Jimble's Jumble",
   "tagline": "Stacking sats with jam",

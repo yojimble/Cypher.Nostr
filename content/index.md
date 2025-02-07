@@ -17,7 +17,7 @@ head:
     - name: 'author'
       content: 'Cypher.space'
     - name: 'copyright'
-      content: '© 2024 cypher'
+      content: '© 2025 Jimble's Jumble'
 
 ---
 :NostrProfile

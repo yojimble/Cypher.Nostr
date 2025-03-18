@@ -3,7 +3,7 @@
   "initsetup": true,
   "maintenancemode": false,
   "nostradmin": "npub1xa8wjw3n7wm0zq2rycqc856hmcgcf26ax8r9m2m8wjwwwdnzxdrsr64spj",
-  "relays": ["wss://relay.damus.io", "wss://nos.lol", "wss://nostr.bitcoiner.social", "wss://nostr.mom", ],
+  "relays": ["wss://relay.damus.io", "wss://nos.lol", "wss://nostr.bitcoiner.social", "wss://nostr.mom"],
   "name": "Jimble's Jumble",
   "tagline": "Stacking sats with jam",
   "textlogo": "CYPHER",

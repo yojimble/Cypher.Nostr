@@ -17,7 +17,7 @@ head:
     - name: 'author'
       content: 'Cypher.space'
     - name: 'copyright'
-      content: '© 2025 Jimbles Jumble'
+      content: '© 2025 Jimbles Jumble' <script type="text/javascript" src="https://counter.websiteout.com/js/36/0/0/1"></script>
 
 ---
 :NostrProfile

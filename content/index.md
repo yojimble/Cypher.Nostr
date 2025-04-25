@@ -29,10 +29,8 @@ head:
  <script data-goatcounter="https://jimblesjumble.goatcounter.com/count"
         async src="//gc.zgo.at/count.js"></script>
 
-        <!-- Default gnrcounter.com code for https://jimblesjumble.netlify.app/ -->
 <script language="JavaScript" type="text/javascript" src="https://gnrcounter.com/counter.php?accId=b5459734c72236d167d0a946435aefb7"></script>
 <noscript>
 <a href="https://gnrcounter.com" title="Web Analytics">Web Analytics</a>
 </noscript>
-<!-- End of gnrcounter.com Code -->  
   

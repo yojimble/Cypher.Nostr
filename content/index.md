@@ -24,8 +24,5 @@ head:
 
 :NostrFeed
 
- <div id="sfcyfkjy86qs3eqjq64s6pk25njlj4772xn"></div><script type="text/javascript" src="https://counter4.optistats.ovh/private/counter.js?c=yfkjy86qs3eqjq64s6pk25njlj4772xn&down=async" async></script><br><a href="https://www.freecounterstat.com">web counter</a><noscript><a href="https://www.freecounterstat.com" title="web counter"><img src="https://counter4.optistats.ovh/private/freecounterstat.php?c=yfkjy86qs3eqjq64s6pk25njlj4772xn" border="0" title="web counter" alt="web counter"></a></noscript>
-
- <!-- Badge Code - Do Not Change The Code -->
-<a class="hitCounter" href="https://visitorshitcounter.com/" target="_blank" title="Hit counter" data-name="b6719b94a93812dd13478e91b35f6310|5|external|1|#ffffff|#ffffff|small|s-hit">Hit Counter</a><script>document.write("<script type='text/javascript' src='https://visitorshitcounter.com/js/hitCounter.js?v="+Date.now()+"'><\/script>");</script>
-<!-- Badge Code End Here -->
+ <div id="sfcyfkjy86qs3eqjq64s6pk25njlj4772xn"></div><script type="text/javascript" src="https://counter4.optistats.ovh/private/counter.js?c=yfkjy86qs3eqjq64s6pk25njlj4772xn&down=async" async></script><br><a href="https://www.freecounterstat.com"> </a><noscript><a href="https://www.freecounterstat.com" title="web counter"><img src="https://counter4.optistats.ovh/private/freecounterstat.php?c=yfkjy86qs3eqjq64s6pk25njlj4772xn" border="0" title="web counter" alt="web counter"></a></noscript><script data-goatcounter="https://jimblesjumble.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>

@@ -23,3 +23,7 @@ head:
 :NostrProfile
 
 :NostrFeed
+
+<div id="sfcfl65s1u1s7un5c2l81r8kmjqu2uefa6t"></div>
+<script type="text/javascript" src="https://counter4.optistats.ovh/private/counter.js?c=fl65s1u1s7un5c2l81r8kmjqu2uefa6t&down=async" async></script>
+<br><a href="https://www.freecounterstat.com">web counter</a><noscript><a href="https://www.freecounterstat.com" title="web counter"><img src="https://counter4.optistats.ovh/private/freecounterstat.php?c=fl65s1u1s7un5c2l81r8kmjqu2uefa6t" border="0" title="web counter" alt="web counter"></a></noscript>

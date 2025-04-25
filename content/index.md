@@ -24,5 +24,5 @@ head:
 
 :NostrFeed
 
- <a href='https://www.free-counters.org/'>free HitCounters</a> <script type='text/javascript' src='https://www.freevisitorcounters.com/auth.php?id=dd888281785c00be24954f9b46cae9daf64f2e2d'></script>
-<script type="text/javascript" src="https://www.freevisitorcounters.com/en/home/counter/1332225/t/5"></script>
+ <a href='https://www.free-counters.org/'>free HitCounters</a> <script type='text/javascript' src='https://www.freevisitorcounters.com/auth.php?id=50ce06d7e5fef5b3f32f028393b06844a142d2f5'></script>
+<script type="text/javascript" src="https://www.freevisitorcounters.com/en/home/counter/1332226/t/4"></script>

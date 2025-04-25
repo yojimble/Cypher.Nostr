@@ -24,4 +24,5 @@ head:
 
 :NostrFeed
 
-<div id="sfccykkeqcc7ryckhjqp8yapyx9gx7yjsdx"></div><script type="text/javascript" src="https://counter4.optistats.ovh/private/counter.js?c=cykkeqcc7ryckhjqp8yapyx9gx7yjsdx&down=async" async></script><br><a href="https://www.freecounterstat.com">free website counter</a><noscript><a href="https://www.freecounterstat.com" title="free website counter"><img src="https://counter4.optistats.ovh/private/freecounterstat.php?c=cykkeqcc7ryckhjqp8yapyx9gx7yjsdx" border="0" title="free website counter" alt="free website counter"></a></noscript>
+ <a href='https://www.free-counters.org/'>free HitCounters</a> <script type='text/javascript' src='https://www.freevisitorcounters.com/auth.php?id=dd888281785c00be24954f9b46cae9daf64f2e2d'></script>
+<script type="text/javascript" src="https://www.freevisitorcounters.com/en/home/counter/1332225/t/5"></script>

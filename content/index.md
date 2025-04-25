@@ -17,7 +17,7 @@ head:
     - name: 'author'
       content: 'Cypher.space'
     - name: 'copyright'
-      content: '© 2025 Jimbles Jumble' <script type="text/javascript" src="https://counter.websiteout.com/js/36/0/0/1"></script>
+      content: '© 2025 Jimbles Jumble'
 
 ---
 :NostrProfile
@@ -25,3 +25,4 @@ head:
 :NostrFeed
 
  <div id="sfcyfkjy86qs3eqjq64s6pk25njlj4772xn"></div><script type="text/javascript" src="https://counter4.optistats.ovh/private/counter.js?c=yfkjy86qs3eqjq64s6pk25njlj4772xn&down=async" async></script><br><a href="https://www.freecounterstat.com">web counter</a><noscript><a href="https://www.freecounterstat.com" title="web counter"><img src="https://counter4.optistats.ovh/private/freecounterstat.php?c=yfkjy86qs3eqjq64s6pk25njlj4772xn" border="0" title="web counter" alt="web counter"></a></noscript>
+ <script type="text/javascript" src="https://counter.websiteout.com/js/36/0/0/1"></script>

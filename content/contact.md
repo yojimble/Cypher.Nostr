@@ -20,6 +20,8 @@ head:
       content: '© 2024 cypher'
 
 ---
-DM me on nostr (@yojimble) if you don't get a reply from the form!
+
 
 :Contact
+
+DM me on nostr (@yojimble) if you don't get a reply from the form!

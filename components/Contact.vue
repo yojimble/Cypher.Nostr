@@ -98,6 +98,8 @@
             />
           </div>
         </div>
+
+        <!-- hide last name and company form section
         <div>
           <label
             for="last-name"
@@ -131,6 +133,9 @@
           </div>
         </div>
         <div class="sm:col-span-2">
+        
+        -->
+        
           <label
             for="email"
             class="block text-sm font-semibold leading-6 text-gray-900 dark:text-white"
@@ -333,7 +338,7 @@ const { t } = useI18n({ useScope: "local" });
   "en": {
     "title": "Contact Form",
     "subtitle": "Choose what information you want to add",
-    "firstname": "First Name",
+    "firstname": "Name",
     "lastname": "Last Name",
     "company": "Company",
     "email": "E-mail",
@@ -341,7 +346,7 @@ const { t } = useI18n({ useScope: "local" });
     "npub": "Npub",
     "consent": "By selecting this, you agree to our",
     "letsTalk": "Let's talk",
-    "termsOfService": "Terms of service",
+    "termsOfService": "Terms of service: GFY",
     "line1": "Something Went Wrong 🤯",
     "line2": "Looks like your Message is empty...",
     "line3": "Thanks for reaching out!",

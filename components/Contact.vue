@@ -296,7 +296,7 @@ const { t } = useI18n({ useScope: "local" });
     "line5": "Sie müssen den Nutzungsbedingungen zustimmen"
   },
   "en": {
-    "title": "Contact Form (is broken! email direct: yojimble@pm.me)",
+    "title": "Contact Form - is broken! email direct: yojimble@pm.me",
     "subtitle": "All fields optional",
     "firstname": "Name",
     "lastname": "Last Name",

@@ -192,7 +192,7 @@ const currentDate = new Date();
             class="text-xs leading-5 text-black dark:text-black dark:text-white mt-1"
           >
             &copy; {{ currentDate.getFullYear() }} {{ data.name }}, Inc. All
-            rights reserved.
+            Rights Preserved, No Cookies Served
           </p>
         </div>
       </div>

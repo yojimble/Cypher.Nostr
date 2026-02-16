@@ -1,1 +1,1 @@
-{"Headernavigation": {"basicmenu": ["Home", "About Us", "Services", "Gallery"]}}
+{\n  "basicmenu": [\n    "Home",\n    "About",\n    "Gallery",\n    "Contact"\n  ],\n  "Footernavigation": [\n    "Privacy Policy",\n    "Terms of Service"\n  ],\n  "bloglabel": "Blog",\n  "shoplabel": "Shop",\n  "MenuPopup": [\n    "Settings",\n    "Help"\n  ]\n}

@@ -190,7 +190,7 @@ const eventData = ref(null);
 
         <NuxtLink
           v-if="data.blog"
-          :to="localePath('/notes')"
+          :to="localePath('/recipes')"
           class="text-sm font-semibold leading-6 text-black dark:text-white"
         >
           {{ menu.Headernavigation.bloglabel }}</NuxtLink
@@ -417,7 +417,7 @@ const eventData = ref(null);
               <NuxtLink
                 v-if="data.blog"
                 class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-black dark:text-white"
-                :to="localePath('/notes')"
+                :to="localePath('/recipes')"
                 @click="mobileMenuOpen = false"
               >
                 {{ menu.Headernavigation.bloglabel }}

@@ -83,6 +83,11 @@ const loadMore = async () => {
 };
 
 const { t } = useI18n({ useScope: "local" });
+
+  const totalEvents = ref(0);
+  const fetchedEvents = await ndk.fetchEvents(filter);
+totalEvents.value = fetchedEvents.size;
+  
 </script>
 
 <i18n lang="json">
@@ -184,7 +189,7 @@ const { t } = useI18n({ useScope: "local" });
             </div>
           </article>
         </div>
-        <div class="text-center mt-8" v-if="events.length > 0">
+        <div class="text-center mt-8" v-if="events.length < totalEvents">
           <button @click="loadMore" class="bg-blue-500 text-white px-4 py-2 rounded-lg">
             Load More
           </button>

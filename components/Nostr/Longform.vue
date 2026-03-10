@@ -3,12 +3,28 @@ import { ref, onMounted } from 'vue';
 import NDK from '@nostr-dev-kit/ndk';
 import setup from "~/config/setup";
 import { bech32 } from "bech32";
+import { useI18n } from "vue-i18n";
 
-const bytesToHex = (bytes) => {
-  return Array.from(bytes)
-    .map((byte) => byte.toString(16).padStart(2, "0"))
-    .join("");
-};
+// -----------------------------
+// Refs & state
+// -----------------------------
+const events = ref([]);
+const isLoading = ref(true);
+const page = ref(0);
+const pageSize = 6; // smaller chunks for better UX
+const lastFetchedTimestamp = ref(0); // track last event time
+const hasMore = ref(true); // controls Load More button
+
+// -----------------------------
+// NDK connection
+// -----------------------------
+const ndk = new NDK({ explicitRelayUrls: setup.relays });
+
+// -----------------------------
+// Helper functions
+// -----------------------------
+const bytesToHex = (bytes) =>
+  Array.from(bytes).map(b => b.toString(16).padStart(2,'0')).join('');
 
 const npubToHex = (npub) => {
   const decoded = bech32.decode(npub);
@@ -18,147 +34,99 @@ const npubToHex = (npub) => {
 
 const skHex = npubToHex(setup.nostradmin);
 
-const events = ref([]);
-const isLoading = ref(true);
-const page = ref(0);
-const pageSize = 3; // Number of events per page
+// -----------------------------
+// Fetch events function (incremental)
+// -----------------------------
+const fetchEvents = async () => {
+  if (!hasMore.value) return; // stop if no more events
 
-const extractMediaUrl = (content) => {
-  const regex = /(https?:\/\/[^\s]+(?:png|jpg|mp4))/g;
-  const matches = content.match(regex);
-  return matches ? matches[0] : null;
-};
+  isLoading.value = true;
+  if (!ndk.isConnected) await ndk.connect();
 
-const cleanedContent = (content) => {
-  const mediaRegex = /(https?:\/\/[^\s]+(?:png|jpg|mp4))/g;
-  const urlRegex = /(https?:\/\/[^\s]+)/g;
-  const cleaned = content.replace(mediaRegex, '').replace(urlRegex, '').trim();
-  return cleaned;
-};
+  const filter = {
+    kinds: [30023],
+    authors: [skHex],
+    limit: pageSize,
+    until: lastFetchedTimestamp.value || undefined, // fetch older events
+  };
 
-const fetchEvents = async (pageNumber) => {
-  const relays = [
-    'wss://relay.damus.io'
-  ];
+  const fetched = await ndk.fetchEvents(filter);
+  const newEvents = Array.from(fetched)
+    .map(event => {
+      const imageTag = event.tags.find(tag => tag[0] === "image");
+      const summaryTag = event.tags.find(tag => tag[0] === "summary");
+      const titleTag = event.tags.find(tag => tag[0] === "title");
+      return {
+        ...event,
+        image: imageTag ? imageTag[1] : null,
+        summary: summaryTag ? summaryTag[1] : null,
+        title: titleTag ? titleTag[1] : null,
+      };
+    })
+    // newest first
+    .sort((a, b) => b.created_at - a.created_at)
+    // remove duplicates
+    .filter(e => !events.value.find(ev => ev.id === e.id));
 
-  const ndk = new NDK({ explicitRelayUrls: setup.relays });
+  // Append to existing events
+  events.value.push(...newEvents);
 
-  await ndk.connect(); // Connect to the relay
-
-  // Define the filter
-  const filter = { kinds: [30023], authors: [skHex] };
-
-  const fetchedEvents = await ndk.fetchEvents(filter);
-  console.log(fetchedEvents);
-
-  // Process fetched events
-  const newEvents = Array.from(fetchedEvents).slice(pageNumber * pageSize, (pageNumber + 1) * pageSize).map(event => {
-    const imageTag = event.tags.find(tag => tag[0] === "image");
-    const summaryTag = event.tags.find(tag => tag[0] === "summary");
-    const titleTag = event.tags.find(tag => tag[0] === "title");
-    return {
-      ...event,
-      image: imageTag ? imageTag[1] : null,
-      summary: summaryTag ? summaryTag[1] : null,
-      title: titleTag ? titleTag[1] : null,
-    };
-  });
-
-  if (pageNumber === 0) {
-    events.value = newEvents;
+  // Update last fetched timestamp for next page
+  if (newEvents.length > 0) {
+    lastFetchedTimestamp.value = Math.min(...newEvents.map(e => e.created_at));
   } else {
-    events.value = [...events.value, ...newEvents];
+    hasMore.value = false; // no more events to load
   }
 
-  isLoading.value = false; // Set loading to false after fetching events
+  isLoading.value = false;
 };
 
+// -----------------------------
+// Load more
+// -----------------------------
+const loadMore = async () => {
+  await fetchEvents();
+};
+
+// -----------------------------
+// On mounted
+// -----------------------------
 onMounted(async () => {
-  await fetchEvents(page.value);
+  await fetchEvents();
 });
 
-const loadMore = async () => {
-  page.value += 1;
-  await fetchEvents(page.value);
-};
-
+// -----------------------------
+// i18n
+// -----------------------------
 const { t } = useI18n({ useScope: "local" });
-  
 </script>
-
-<i18n lang="json">
-{
-  "da": {
-    "title": "NOTER",
-    "subtitle": "Udviklingsnotater med emner fra projekter, men også generelle ting om Bitcoin, Lightning, Nostr, Relay Setup, E-cash, DVM things, udvikling,.."
-  },
-  "de": {
-    "title": "NOTIZEN",
-    "subtitle": "Entwicklungsnotizen mit Themen aus Projekten, aber auch allgemeine Sachen über Bitcoin, Lightning, Nostr, Nostr, Relay Setup, E-cash, DVM things, Entwicklung,.."
-  },
-  "en": {
-    "title": "RECIPES",
-    "subtitle": "Our Recipes"
-  },
-  "es": {
-    "title": "NOTAS",
-    "subtitle": "Notas de desarrollo con temas de proyectos pero también cosas generales sobre Bitcoin, Lightning, Nostr, Nostr, Relay Setup, E-cash, DVM things, desarrollo,.."
-  },
-  "fr": {
-    "title": "NOTES",
-    "subtitle": "Notes de développement avec des sujets provenant de projets mais aussi des choses générales sur Bitcoin, Lightning, Nostr, Nostr, Relay Setup, E-cash, DVM things, développement,.."
-  },
-  "nl": {
-    "title": "NOTITIES",
-    "subtitle": "Ontwikkelingsnotities met onderwerpen van projecten maar ook algemene dingen over Bitcoin, Lightning, Nostr, Nostr, Relay Setup, E-cash, DVM things, ontwikkeling,.."
-  },
-  "pt": {
-    "title": "NOTAS",
-    "subtitle": "Notas de desenvolvimento com tópicos de projetos, mas também coisas gerais sobre Bitcoin, Lightning, Nostr, Nostr, Relay Setup, E-cash, DVM things, desenvolvimento,.."
-  }
-}
-</i18n>
 
 <template>
   <div class="bg-colorBgLight dark:bg-colorBgDark my-24">
     <div class="mx-auto max-w-7xl px-6 lg:px-8">
+      <!-- Header -->
       <div class="mx-auto max-w-2xl text-center">
         <h2 class="text-3xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-4xl">
           {{ t("title") }}
         </h2>
-        <!-- <p class="mt-2 text-lg leading-8 text-gray-900 dark:text-gray-100">
-          {{ t("subtitle") }}
-        </p> -->
       </div>
+
+      <!-- Loading -->
       <div v-if="isLoading" class="text-center my-10">
-        <svg
-          class="animate-spin h-8 w-8 text-gray-500 dark:text-gray-300 mx-auto"
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 24 24"
-        >
-          <circle
-            class="opacity-25"
-            cx="12"
-            cy="12"
-            r="10"
-            stroke="currentColor"
-            stroke-width="4"
-          ></circle>
-          <path
-            class="opacity-75"
-            fill="currentColor"
-            d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-          ></path>
+        <svg class="animate-spin h-8 w-8 text-gray-500 dark:text-gray-300 mx-auto" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+          <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+          <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
         </svg>
-        <p class="mt-2 text-gray-500 dark:text-gray-300">Loading events...</p>
       </div>
+
+      <!-- Grid -->
       <div v-else>
         <div v-if="events.length === 0" class="text-center mt-12">
           <p>No Notes found</p>
         </div>
+
         <div v-else class="mx-auto grid max-w-2xl grid-cols-1 gap-x-8 gap-y-20 lg:mx-0 lg:max-w-none lg:grid-cols-3 mt-12">
-          <article v-for="(event, index) in events" :key="index" class="flex flex-col items-start">
+          <article v-for="event in events" :key="event.id" class="flex flex-col items-start">
             <NuxtLink :to="localePath('/note/' + event.id)">
               <div class="relative w-full">
                 <img :src="event.image || '/placeholder-img.png'" alt="Event Image" class="aspect-[16/9] w-full rounded-2xl bg-gray-100 object-cover sm:aspect-[2/1] lg:aspect-[3/2] border dark:border-white" />
@@ -172,7 +140,7 @@ const { t } = useI18n({ useScope: "local" });
                 </time>
               </div>
               <div class="group relative">
-                <h3 class="mt-3 text-lg font-semibold leading-6 text-gray-900 dark:text-white dark:text-gray-100">
+                <h3 class="mt-3 text-lg font-semibold leading-6 text-gray-900 dark:text-white">
                   <NuxtLink :to="localePath('/note/' + event.id)">
                     <span class="absolute inset-0"></span>
                     {{ event.title }}
@@ -185,7 +153,9 @@ const { t } = useI18n({ useScope: "local" });
             </div>
           </article>
         </div>
-        <div class="text-center mt-8" v-if="events.length < totalEvents">
+
+        <!-- Load More -->
+        <div v-if="hasMore" class="text-center mt-8">
           <button @click="loadMore" class="bg-blue-500 text-white px-4 py-2 rounded-lg">
             Load More
           </button>

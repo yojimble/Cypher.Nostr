@@ -96,8 +96,8 @@ const { t } = useI18n({ useScope: "local" });
     "subtitle": "Entwicklungsnotizen mit Themen aus Projekten, aber auch allgemeine Sachen über Bitcoin, Lightning, Nostr, Nostr, Relay Setup, E-cash, DVM things, Entwicklung,.."
   },
   "en": {
-    "title": "NOTES",
-    "subtitle": "Development notes with topics from projects but also general stuff about Bitcoin, Lightning, Nostr, Nostr, Relay Setup, E-cash, DVM things, Development,.. "
+    "title": "RECIPES",
+    "subtitle": "Our Recipes"
   },
   "es": {
     "title": "NOTAS",

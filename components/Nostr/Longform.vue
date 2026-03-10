@@ -21,7 +21,7 @@ const skHex = npubToHex(setup.nostradmin);
 const events = ref([]);
 const isLoading = ref(true);
 const page = ref(0);
-const pageSize = 3; // Number of events per page
+const pageSize = 9; // Number of events per page
 
 const extractMediaUrl = (content) => {
   const regex = /(https?:\/\/[^\s]+(?:png|jpg|mp4))/g;

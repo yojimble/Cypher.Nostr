@@ -83,10 +83,6 @@ const loadMore = async () => {
 };
 
 const { t } = useI18n({ useScope: "local" });
-
-  const totalEvents = ref(0);
-  const fetchedEvents = await ndk.fetchEvents(filter);
-totalEvents.value = fetchedEvents.size;
   
 </script>
 

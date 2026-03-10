@@ -23,7 +23,7 @@
 
 
             <NuxtLink
-              :to="localePath('/notes')"
+              :to="localePath('/recipes')"
               class="text-sm font-semibold leading-6 text-gray-900 dark:text-white"
               >{{ t("getStartedLink") }}
               <span aria-hidden="true">→</span></NuxtLink

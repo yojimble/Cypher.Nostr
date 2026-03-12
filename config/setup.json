@@ -4,6 +4,11 @@
   "maintenancemode": false,
   "nostradmin": "npub1xa8wjw3n7wm0zq2rycqc856hmcgcf26ax8r9m2m8wjwwwdnzxdrsr64spj",
   "relays": ["wss://nos.lol", "wss://nostr.mom", "wss://atlas.nostr.land"],
+  "nostrInboxRelays": [
+    "wss://nos.lol",
+    "wss://nostr.mom",
+    "wss://atlas.nostr.land"
+  ],
   "name": "Jimble's Jumble",
   "tagline": "Stacking sats with jam",
   "textlogo": "CYPHER",
@@ -34,6 +39,11 @@
   "footerlanguage": false,
   "footersocials": true,
   "footertheme": true,
+  "contactdetails": {
+    "line1": "Nostr: npub1xa8wjw3n7wm0zq2rycqc856hmcgcf26ax8r9m2m8wjwwwdnzxdrsr64spj",
+    "line2": "Email: yojimble@pm.me",
+    "line3": "Profile: https://njump.me/yojimble@stacker.news"
+  },
   "socialnavigation": {
     "facebook": "",
     "instagram": "https://www.instagram.com/jimblesjumble",

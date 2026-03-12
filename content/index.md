@@ -1,36 +1,25 @@
 ---
-title: 'Cypher - Build Bitcoin Only Businesses'
+title: "Cypher - Build Bitcoin Only Businesses"
 layout: default
-description: 'Build your Bitcoin blog/webshop for free with donation and checkout tools.'
+description: "Build your Bitcoin blog/webshop for free with donation and checkout tools."
 
 image:
-  src: 'https://dev.cypher.space/project/Placeholder.gif'
-  alt: 'An image showcasing My Page.'
+  src: "https://dev.cypher.space/project/Placeholder.gif"
+  alt: "An image showcasing My Page."
   width: 1200
   height: 630
 head:
   meta:
-    - name: 'keywords'
-      content: 'bitcoin, lightning, webapps'
-    - name: 'robots'
-      content: 'index, follow'
-    - name: 'author'
-      content: 'Cypher.space'
-    - name: 'copyright'
-      content: '© 2025 Jimbles Jumble'
-
+    - name: "keywords"
+      content: "bitcoin, lightning, webapps"
+    - name: "robots"
+      content: "index, follow"
+    - name: "author"
+      content: "Cypher.space"
+    - name: "copyright"
+      content: "© 2025 Jimbles Jumble"
 ---
+
 :NostrProfile
 
 :NostrFeed
-
- <div id="sfcyfkjy86qs3eqjq64s6pk25njlj4772xn"></div><script type="text/javascript" src="https://counter4.optistats.ovh/private/counter.js?c=yfkjy86qs3eqjq64s6pk25njlj4772xn&down=async" async></script><br><a href="https://www.freecounterstat.com"> </a><noscript><a href="https://www.freecounterstat.com" title="web counter"><img src="https://counter4.optistats.ovh/private/freecounterstat.php?c=yfkjy86qs3eqjq64s6pk25njlj4772xn" border="0" title="web counter" alt="web counter"></a></noscript>
- 
- <script data-goatcounter="https://jimblesjumble.goatcounter.com/count"
-        async src="//gc.zgo.at/count.js"></script>
-
-<script language="JavaScript" type="text/javascript" src="https://gnrcounter.com/counter.php?accId=b5459734c72236d167d0a946435aefb7"></script>
-<noscript>
-<a href="https://gnrcounter.com" title="Web Analytics">Web Analytics</a>
-</noscript>
-  

@@ -1,11 +1,7 @@
 <script setup>
-import ticker from "~/config/setup";
-
-const btcprice = await $fetch(
-  "https://api.coinbase.com/v2/exchange-rates?currency=BTC"
-);
-
-const btcprices = Number(btcprice.data.rates.GBP).toFixed(2);
+const rates = await useBtcRates("GBP");
+const btcprices =
+  rates.btcPerFiat > 0 ? (1 / rates.btcPerFiat).toFixed(2) : "0.00";
 </script>
 <template>
   <div>

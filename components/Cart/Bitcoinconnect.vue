@@ -1,13 +1,11 @@
 <template>
   <div
-    class="bg-colorBgLight dark:bg-colorBgDark"
+    class="bg-colorBgLight dark:bg-colorBgDark farm-grain-bg farm-checkout-shell"
     v-if="store.cartItems.length != 0"
   >
     <div class="mx-auto max-w-4xl px-4 py-16 sm:px-6 sm:py-12 lg:px-8">
       <div class="mt-12" v-if="launchStep == '' || displaymode == true">
-        <h1
-          class="text-3xl font-bold tracking-tight text-gray-900 dark:text-white"
-        >
+        <h1 class="text-3xl font-bold tracking-tight farm-title">
           {{ t("Shopcart") }}
         </h1>
 
@@ -40,7 +38,7 @@
                       <h3 class="text-sm">
                         <a
                           :href="product.href"
-                          class="font-medium text-3xl text-gray-700 hover:text-gray-800 dark:text-white"
+                          class="font-medium text-2xl text-gray-700 hover:text-gray-800 dark:text-white"
                           >{{ product.title }}</a
                         >
                       </h3>
@@ -112,7 +110,7 @@
                           (variation = product.variation),
                         )
                       "
-                      class="ml-4 text-sm font-medium text-indigo-600 hover:text-indigo-500 sm:ml-0 sm:mt-3"
+                      class="ml-4 text-sm font-medium farm-remove-link sm:ml-0 sm:mt-3"
                     >
                       <span>{{ t("Remove") }}</span>
                     </button>
@@ -131,7 +129,7 @@
 
         <!-- Order summary -->
         <div class="mt-10">
-          <div class="rounded-lg bg-gray-50 px-4 py-6 sm:p-6 lg:p-8">
+          <div class="farm-checkout-card px-4 py-6 sm:p-6 lg:p-8">
             <h2 class="sr-only">Order summary</h2>
 
             <div class="flow-root">
@@ -189,7 +187,7 @@
           <!-- SHIPPING INFO -->
 
           <div
-            class="px-4 pb-24 pt-16 sm:px-6 sm:pt-12 lg:px-8 lg:py-16 rounded-3xl border-4 border-gray-600 mt-4"
+            class="px-4 pb-24 pt-16 sm:px-6 sm:pt-12 lg:px-8 lg:py-16 mt-4 farm-checkout-section"
           >
             <p class="mt-2 text-4xl font-bold tracking-tight">
               Delivery Options
@@ -200,14 +198,14 @@
                 <button
                   v-if="data.checkout == 'full' || data.checkout == 'local'"
                   @click="toggleLocal"
-                  class="px-4 my-4 py-2 bg-blue-500 text-white font-semibold rounded-lg shadow-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75 mr-6"
+                  class="px-4 my-4 py-2 font-semibold mr-6 farm-button-primary"
                 >
                   📍 Local Pickup
                 </button>
                 <button
                   v-if="data.checkout == 'full' || data.checkout == 'ship'"
                   @click="toggleShipping"
-                  class="px-4 my-4 py-2 bg-green-500 text-white font-semibold rounded-lg shadow-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-400 focus:ring-opacity-75"
+                  class="px-4 my-4 py-2 font-semibold farm-button-primary"
                 >
                   ⛴️ Shipping
                 </button>
@@ -270,7 +268,7 @@
                         id=""
                         name=""
                         autocomplete=""
-                        class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm dark:text-black"
+                        class="block w-full sm:text-sm farm-input"
                       />
                     </div>
                   </div>
@@ -305,7 +303,7 @@
                         id="firstname"
                         name="firstname"
                         autocomplete="firstname"
-                        class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm dark:text-black"
+                        class="block w-full sm:text-sm farm-input"
                       />
                     </div>
                   </div>
@@ -323,7 +321,7 @@
                         id="lastname"
                         name="lastname"
                         autocomplete="lastname"
-                        class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm dark:text-black"
+                        class="block w-full sm:text-sm farm-input"
                       />
                     </div>
                   </div>
@@ -341,7 +339,7 @@
                         id="company"
                         name="company"
                         autocomplete="comapany"
-                        class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm dark:text-black"
+                        class="block w-full sm:text-sm farm-input"
                       />
                     </div>
                   </div>
@@ -359,7 +357,7 @@
                         id="email"
                         name="email"
                         autocomplete="email"
-                        class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm dark:text-black"
+                        class="block w-full sm:text-sm farm-input"
                       />
                     </div>
                   </div>
@@ -377,7 +375,7 @@
                         id="address"
                         name="address"
                         autocomplete="street-address"
-                        class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm dark:text-black"
+                        class="block w-full sm:text-sm farm-input"
                       />
                     </div>
                   </div>
@@ -394,7 +392,7 @@
                         v-model="apartment"
                         id="apartment"
                         name="apartment"
-                        class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm dark:text-black"
+                        class="block w-full sm:text-sm farm-input"
                       />
                     </div>
                   </div>
@@ -412,7 +410,7 @@
                         id="city"
                         name="city"
                         autocomplete="address-level2"
-                        class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm dark:text-black"
+                        class="block w-full sm:text-sm farm-input"
                       />
                     </div>
                   </div>
@@ -430,7 +428,7 @@
                         id="postal-code"
                         name="postal-code"
                         autocomplete="postal-code"
-                        class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm dark:text-black"
+                        class="block w-full sm:text-sm farm-input"
                       />
                     </div>
                   </div>
@@ -448,7 +446,7 @@
                         id="region"
                         name="region"
                         autocomplete="address-level1"
-                        class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm dark:text-black"
+                        class="block w-full sm:text-sm farm-input"
                       />
                     </div>
                   </div>
@@ -466,7 +464,7 @@
                         id="country"
                         name="country"
                         autocomplete="country"
-                        class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm dark:text-black"
+                        class="block w-full sm:text-sm farm-input"
                       />
                     </div>
                   </div>
@@ -486,7 +484,7 @@
             >
               <button
                 @click="orderView()"
-                class="w-full rounded-md border border-transparent bg-indigo-600 px-4 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-50"
+                class="w-full px-4 py-3 text-base font-medium text-white farm-button-primary"
               >
                 {{ t("ContinueOrder") }}
               </button>
@@ -497,7 +495,7 @@
             <p>
               <NuxtLink
                 :to="localePath('/shop')"
-                class="font-medium text-indigo-600 hover:text-indigo-500"
+                class="font-medium farm-remove-link"
               >
                 {{ t("ContinueShop") }}
                 <span aria-hidden="true"> &rarr;</span>
@@ -517,9 +515,7 @@
           >
             <div class="mx-auto max-w-3xl">
               <div class="max-w-3xl">
-                <h1
-                  class="text-base font-medium text-indigo-600 dark:text-white"
-                >
+                <h1 class="text-base font-medium farm-subtitle">
                   {{ t("thank_you_note") }}
                 </h1>
                 <p class="mt-2 text-4xl font-bold tracking-tight">
@@ -572,7 +568,7 @@
                             <h3 class="text-sm">
                               <a
                                 :href="product.href"
-                                class="font-medium text-3xl text-gray-700 hover:text-gray-800 dark:text-white"
+                                class="font-medium text-2xl text-gray-700 hover:text-gray-800 dark:text-white"
                                 >{{ product.title }}</a
                               >
                             </h3>
@@ -800,20 +796,22 @@
             <div class="mt-10" v-if="!payswitch">
               <button
                 @click="paymentstart()"
-                class="w-full rounded-md border border-transparent bg-indigo-600 px-4 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-50"
+                class="w-full px-4 py-3 text-base font-medium text-white farm-button-primary"
               >
                 {{ t("ContinuePay") }}
               </button>
 
               <p
                 v-if="orderDispatchMessage"
-                class="mt-3 text-sm"
+                class="mt-3 farm-status-note"
                 :class="
                   orderDispatchState === 'error'
-                    ? 'text-red-600 dark:text-red-400'
+                    ? 'farm-status-note--error'
                     : orderDispatchState === 'success'
-                      ? 'text-green-700 dark:text-green-400'
-                      : 'text-gray-600 dark:text-gray-300'
+                      ? orderDispatchMessage.includes('fallback')
+                        ? 'farm-status-note--fallback'
+                        : 'farm-status-note--success'
+                      : 'farm-status-note--pending'
                 "
               >
                 {{ orderDispatchMessage }}
@@ -841,7 +839,7 @@
       <p>
         <NuxtLink
           :to="localePath('/shop')"
-          class="font-medium text-indigo-600 hover:text-indigo-500"
+          class="font-medium farm-remove-link"
         >
           {{ t("ContinueShop") }}
           <span aria-hidden="true"> &rarr;</span>

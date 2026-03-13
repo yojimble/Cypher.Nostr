@@ -1,10 +1,10 @@
 <template>
-  <div>
+  <div class="farm-grain-bg min-h-screen py-20">
     <MDC
       v-if="eventContent"
       :value="eventContent"
       tag="article"
-      class="px-6 mt-24 prose dark:prose-invert mx-auto py-6"
+      class="farm-prose px-6 mt-8 prose dark:prose-invert mx-auto py-8 max-w-3xl"
     />
   </div>
 </template>

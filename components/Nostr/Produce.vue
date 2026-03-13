@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-colorBgLight dark:bg-colorBgDark">
+  <div class="bg-colorBgLight dark:bg-colorBgDark farm-grain-bg">
     <div>
       <!-- Mobile filter dialog -->
       <TransitionRoot as="template" :show="mobileFiltersOpen">
@@ -229,25 +229,27 @@
       </TransitionRoot>
 
       <main class="mx-auto max-w-2xl px-4 lg:max-w-7xl lg:px-8">
-        <div class="border-b border-gray-200 pb-10 pt-24">
+        <div class="pb-4 pt-8 px-2 sm:px-4 mt-8">
           <h1
-            class="text-4xl font-bold tracking-tight text-gray-900 dark:text-white"
+            class="text-3xl sm:text-4xl font-black tracking-tight"
+            style="color: var(--farm-ink)"
           >
             {{ t("title") }}
           </h1>
-          <p class="mt-4 text-base text-gray-500 dark:text-white">
+          <p class="mt-2 text-base" style="color: var(--farm-soil)">
             {{ t("subtitle") }}
           </p>
         </div>
 
         <div
-          class="pb-24 pt-12 lg:grid lg:grid-cols-3 lg:gap-x-8 xl:grid-cols-4"
+          class="pb-20 pt-4 lg:grid lg:grid-cols-3 lg:gap-x-8 xl:grid-cols-4"
         >
           <aside>
             <h2 class="sr-only">Filters</h2>
             <button
               @click="resetFilters"
-              class="hidden lg:block mb-6 px-4 py-2 bg-blue-500 text-white font-semibold rounded-lg shadow-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75"
+              class="hidden lg:block mb-6 px-4 py-2 font-semibold rounded-lg"
+              style="background: var(--farm-soil); color: #fff"
             >
               Clear Filters
             </button>
@@ -266,7 +268,7 @@
             </button>
 
             <div class="hidden lg:block">
-              <div class="space-y-2.5">
+              <div class="farm-panel p-5 space-y-2.5">
                 <!-- Inventory Filter -->
                 <fieldset>
                   <legend
@@ -287,7 +289,8 @@
                       />
                       <label
                         for="color-0"
-                        class="ml-3 text-sm text-gray-600 dark:text-white"
+                        class="ml-3 text-sm"
+                        style="color: var(--farm-soil)"
                         >{{ t("Allitems") }}</label
                       >
                     </div>
@@ -302,7 +305,8 @@
                       />
                       <label
                         for="color-1"
-                        class="ml-3 text-sm text-gray-600 dark:text-white"
+                        class="ml-3 text-sm"
+                        style="color: var(--farm-soil)"
                         >{{ t("Instock") }}</label
                       >
                     </div>
@@ -335,7 +339,8 @@
                       />
                       <label
                         :for="`${section.id}-${optionIdx}`"
-                        class="ml-3 text-sm text-gray-600 dark:text-white"
+                        class="ml-3 text-sm"
+                        style="color: var(--farm-soil)"
                         >{{ option.label }}</label
                       >
                     </div>
@@ -368,7 +373,8 @@
                       />
                       <label
                         :for="`${section.id}-${optionIdx}`"
-                        class="ml-3 text-sm text-gray-600 dark:text-white"
+                        class="ml-3 text-sm"
+                        style="color: var(--farm-soil)"
                         >{{ option.label }}</label
                       >
                     </div>
@@ -383,7 +389,7 @@
             aria-labelledby="product-heading"
             class="lg:col-span-2 lg:mt-0 xl:col-span-3"
           >
-            <div class="bg-colorBgLight dark:bg-colorBgDark">
+            <div>
               <div
                 class="mx-auto max-w-2xl px-4 py-16 md:py-0 sm:px-6 lg:max-w-7xl lg:px-2"
               >
@@ -408,72 +414,100 @@
                     <div
                       v-for="event in filteredEvents"
                       :key="event.id"
-                      class="relative"
+                      class="relative farm-card transition duration-200 hover:-translate-y-1"
                     >
                       <NuxtLink :to="localePath('/item/' + event.id)">
-                        <div
-                          class="relative h-72 w-full overflow-hidden rounded-lg"
-                        >
+                        <div class="relative h-72 w-full overflow-hidden">
                           <img
                             :src="event.image || '/placeholder-img.png'"
-                            class="h-full w-full object-cover object-center"
+                            class="h-full w-full object-cover object-center transition duration-200 hover:scale-[1.03]"
                           />
                         </div>
-                        <div class="relative mt-4">
+                        <div class="relative mt-4 px-4">
                           <h3
-                            class="text-lg font-extrabold text-gray-900 dark:text-white"
+                            class="text-lg font-extrabold"
+                            style="color: var(--farm-ink)"
                           >
                             {{ event.title }}
                           </h3>
-                          <p class="mt-1 text-sm text-gray-500 line-clamp-2">
+                          <p
+                            class="mt-1 text-sm line-clamp-2"
+                            style="color: var(--farm-soil)"
+                          >
                             {{ event.summary }}
                           </p>
+                          <div class="mt-3 flex flex-wrap gap-2">
+                            <span
+                              v-if="event.category && event.category.length"
+                              class="farm-chip px-2 py-0.5 text-xs font-semibold"
+                            >
+                              {{ event.category[0] }}
+                            </span>
+                            <span
+                              v-if="event.variations && event.variations.length"
+                              class="farm-chip px-2 py-0.5 text-xs font-semibold"
+                            >
+                              {{ event.variations[0] }}
+                            </span>
+                          </div>
                         </div>
-                        <div class="flex justify-between mt-4">
-                          <p
-                            v-if="filtersList == 'Bitcoin'"
-                            class="float-left dark:text-white font-semibold text-black"
-                          >
-                            {{ (event.price * btcprices).toFixed(8) }}
-                            <BitcoinIcon
-                              class="h-6 w-6 inline"
-                              aria-hidden="true"
-                            />
-                          </p>
+                        <div class="farm-label-strip mt-4 px-4 py-3">
+                          <div class="flex justify-between">
+                            <p
+                              v-if="filtersList == 'Bitcoin'"
+                              class="float-left font-semibold"
+                              style="color: var(--farm-ink)"
+                            >
+                              {{ (event.price * btcprices).toFixed(8) }}
+                              <BitcoinIcon
+                                class="h-6 w-6 inline"
+                                aria-hidden="true"
+                              />
+                            </p>
 
-                          <p
-                            v-if="filtersList == 'Sats'"
-                            class="float-left dark:text-white font-semibold text-black"
-                          >
-                            {{
-                              (event.price * btcprices * 100000000).toFixed(0)
-                            }}
-                            <SatoshiV2Icon
-                              class="h-6 w-6 inline"
-                              aria-hidden="true"
-                            />
-                          </p>
+                            <p
+                              v-if="filtersList == 'Sats'"
+                              class="float-left font-semibold"
+                              style="color: var(--farm-ink)"
+                            >
+                              {{
+                                (event.price * btcprices * 100000000).toFixed(0)
+                              }}
+                              <SatoshiV2Icon
+                                class="h-6 w-6 inline"
+                                aria-hidden="true"
+                              />
+                            </p>
 
-                          <p
-                            v-if="filtersList == 'Fiat'"
-                            class="float-left dark:text-white font-semibold text-black"
-                          >
-                            {{ event.price }} {{ event.denomination }}
-                          </p>
-                        </div>
+                            <p
+                              v-if="filtersList == 'Fiat'"
+                              class="float-left font-semibold"
+                              style="color: var(--farm-ink)"
+                            >
+                              {{ event.price }} {{ event.denomination }}
+                            </p>
+                          </div>
 
-                        <div>
-                          <span
-                            v-if="event.stock < 5 && event.stock > 0"
-                            class="text-orange-400"
-                            >{{ t("Lastitems") }}</span
-                          >
-                          <span v-if="event.stock == 0" class="text-red-400">{{
-                            t("Nostock")
-                          }}</span>
-                          <span v-if="event.stock > 5" class="text-green-400">{{
-                            t("Instock")
-                          }}</span>
+                          <div class="mt-2">
+                            <span
+                              v-if="event.stock < 5 && event.stock > 0"
+                              class="text-xs font-semibold"
+                              style="color: var(--farm-honey)"
+                              >{{ t("Lastitems") }}</span
+                            >
+                            <span
+                              v-if="event.stock == 0"
+                              class="text-xs font-semibold"
+                              style="color: var(--farm-berry)"
+                              >{{ t("Nostock") }}</span
+                            >
+                            <span
+                              v-if="event.stock > 5"
+                              class="text-xs font-semibold"
+                              style="color: var(--farm-leaf)"
+                              >{{ t("Instock") }}</span
+                            >
+                          </div>
                         </div>
                       </NuxtLink>
                     </div>
@@ -706,7 +740,7 @@ const mobileFiltersOpen = ref(false);
     "Instock": "In stock",
     "Filters": "Filters",
     "Inventory": "Inventory",
-    "title": "Browse our products",
+    "title": "Welcome to the Jam Shop",
     "subtitle": "Discover all our products that are available through bitcoin or lightning purchase!",
     "Allitems": "All items"
   },

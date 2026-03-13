@@ -1,15 +1,14 @@
 <template>
-  <main class="bg-colorBgLight dark:bg-colorBgDark min-h-screen py-16">
+  <main
+    class="bg-colorBgLight dark:bg-colorBgDark farm-grain-bg min-h-screen py-16"
+  >
     <section class="mx-auto max-w-7xl px-6 lg:px-8">
       <div class="text-center">
         <h1
-          class="text-4xl sm:text-5xl font-black tracking-tight text-gray-900 dark:text-white uppercase"
+          class="text-4xl sm:text-5xl font-black tracking-tight uppercase farm-title"
         >
           Gallery
         </h1>
-        <p class="mt-3 text-gray-600 dark:text-gray-300">
-          Kind 20 picture posts grouped by tags.
-        </p>
       </div>
 
       <UiLoadingBuffer v-if="isLoading" />
@@ -20,12 +19,8 @@
           class="mt-10 flex flex-wrap justify-center gap-2"
         >
           <button
-            class="rounded-full px-4 py-2 text-sm font-semibold transition"
-            :class="
-              selectedTag === 'all'
-                ? 'bg-black text-white dark:bg-white dark:text-black'
-                : 'bg-gray-200 text-gray-800 dark:bg-gray-800 dark:text-gray-100'
-            "
+            class="rounded-full px-4 py-2 text-sm font-semibold transition farm-chip"
+            :class="selectedTag === 'all' ? 'farm-chip-active' : ''"
             @click="selectedTag = 'all'"
           >
             All ({{ items.length }})
@@ -34,12 +29,8 @@
           <button
             v-for="bucket in tagBuckets"
             :key="bucket.tag"
-            class="rounded-full px-4 py-2 text-sm font-semibold transition"
-            :class="
-              selectedTag === bucket.tag
-                ? 'bg-black text-white dark:bg-white dark:text-black'
-                : 'bg-gray-200 text-gray-800 dark:bg-gray-800 dark:text-gray-100'
-            "
+            class="rounded-full px-4 py-2 text-sm font-semibold transition farm-chip"
+            :class="selectedTag === bucket.tag ? 'farm-chip-active' : ''"
             @click="selectedTag = bucket.tag"
           >
             #{{ bucket.tag }} ({{ bucket.items.length }})
@@ -65,7 +56,7 @@
               <article
                 v-for="item in bucket.items"
                 :key="item.id"
-                class="overflow-hidden rounded-2xl bg-white dark:bg-black border border-gray-200 dark:border-gray-700 shadow-lg"
+                class="farm-card"
               >
                 <button
                   type="button"
@@ -75,14 +66,14 @@
                   <img
                     :src="item.imageUrl"
                     :alt="item.alt"
-                    class="h-72 w-full object-cover"
+                    class="h-72 w-full object-cover transition duration-200 hover:scale-[1.03]"
                     loading="lazy"
                   />
                 </button>
-                <div class="p-4">
+                <div class="p-4 farm-label-strip">
                   <p
                     v-if="item.caption"
-                    class="text-sm text-gray-700 dark:text-gray-200 line-clamp-3"
+                    class="text-sm line-clamp-3 farm-subtitle"
                   >
                     {{ item.caption }}
                   </p>

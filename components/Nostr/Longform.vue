@@ -102,43 +102,41 @@ const { t } = useI18n({ useScope: "local" });
 <i18n lang="json">
 {
   "da": {
-    "title": "NOTER",
+    "title": "OPSKRIFTER",
     "subtitle": "Udviklingsnotater med emner fra projekter, men også generelle ting om Bitcoin, Lightning, Nostr, Relay Setup, E-cash, DVM things, udvikling,.."
   },
   "de": {
-    "title": "NOTIZEN",
+    "title": "REZEPTE",
     "subtitle": "Entwicklungsnotizen mit Themen aus Projekten, aber auch allgemeine Sachen über Bitcoin, Lightning, Nostr, Nostr, Relay Setup, E-cash, DVM things, Entwicklung,.."
   },
   "en": {
-    "title": "NOTES",
+    "title": "RECIPES",
     "subtitle": "Development notes with topics from projects but also general stuff about Bitcoin, Lightning, Nostr, Nostr, Relay Setup, E-cash, DVM things, Development,.. "
   },
   "es": {
-    "title": "NOTAS",
+    "title": "RECETAS",
     "subtitle": "Notas de desarrollo con temas de proyectos pero también cosas generales sobre Bitcoin, Lightning, Nostr, Nostr, Relay Setup, E-cash, DVM things, desarrollo,.."
   },
   "fr": {
-    "title": "NOTES",
+    "title": "RECETTES",
     "subtitle": "Notes de développement avec des sujets provenant de projets mais aussi des choses générales sur Bitcoin, Lightning, Nostr, Nostr, Relay Setup, E-cash, DVM things, développement,.."
   },
   "nl": {
-    "title": "NOTITIES",
+    "title": "RECEPTEN",
     "subtitle": "Ontwikkelingsnotities met onderwerpen van projecten maar ook algemene dingen over Bitcoin, Lightning, Nostr, Nostr, Relay Setup, E-cash, DVM things, ontwikkeling,.."
   },
   "pt": {
-    "title": "NOTAS",
+    "title": "RECEITAS",
     "subtitle": "Notas de desenvolvimento com tópicos de projetos, mas também coisas gerais sobre Bitcoin, Lightning, Nostr, Nostr, Relay Setup, E-cash, DVM things, desenvolvimento,.."
   }
 }
 </i18n>
 
 <template>
-  <div class="bg-colorBgLight dark:bg-colorBgDark my-24">
+  <div class="bg-colorBgLight dark:bg-colorBgDark farm-grain-bg my-24">
     <div class="mx-auto max-w-7xl px-6 lg:px-8">
-      <div class="mx-auto max-w-2xl text-center">
-        <h2
-          class="text-3xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-4xl"
-        >
+      <div class="mx-auto max-w-2xl text-center px-6 py-4">
+        <h2 class="text-3xl font-bold tracking-tight sm:text-4xl farm-title">
           {{ t("title") }}
         </h2>
         <!-- <p class="mt-2 text-lg leading-8 text-gray-900 dark:text-gray-100">
@@ -164,34 +162,27 @@ const { t } = useI18n({ useScope: "local" });
                 <img
                   :src="event.image || '/placeholder-img.png'"
                   alt="Event Image"
-                  class="aspect-[16/9] w-full rounded-2xl bg-gray-100 object-cover sm:aspect-[2/1] lg:aspect-[3/2] border dark:border-white"
+                  class="aspect-[16/9] w-full object-cover sm:aspect-[2/1] lg:aspect-[3/2]"
                 />
-                <div
-                  class="absolute inset-0 rounded-2xl ring-1 ring-inset ring-gray-900/10"
-                ></div>
               </div>
             </NuxtLink>
-            <div class="max-w-xl">
+            <div class="max-w-xl px-4 pb-4 w-full">
               <div class="mt-8 flex items-center gap-x-4 text-xs">
                 <time
                   :datetime="new Date(event.created_at * 1000).toISOString()"
-                  class="text-gray-500 dark:text-white"
+                  class="farm-subtitle"
                 >
                   {{ new Date(event.created_at * 1000).toLocaleDateString() }}
                 </time>
               </div>
               <div class="group relative">
-                <h3
-                  class="mt-3 text-lg font-semibold leading-6 text-gray-900 dark:text-white dark:text-gray-100"
-                >
+                <h3 class="mt-3 text-lg font-semibold leading-6 farm-title">
                   <NuxtLink :to="localePath('/note/' + event.id)">
                     <span class="absolute inset-0"></span>
                     {{ event.title }}
                   </NuxtLink>
                 </h3>
-                <p
-                  class="mt-5 line-clamp-3 text-sm leading-6 text-gray-900 dark:text-gray-100"
-                >
+                <p class="mt-5 line-clamp-3 text-sm leading-6 farm-subtitle">
                   {{ event.summary }}
                 </p>
               </div>
@@ -201,7 +192,7 @@ const { t } = useI18n({ useScope: "local" });
         <div class="text-center mt-8" v-if="!events.length === 0">
           <button
             @click="loadMore"
-            class="bg-blue-500 text-white px-4 py-2 rounded-lg"
+            class="farm-button-primary text-white px-4 py-2"
           >
             Load More
           </button>

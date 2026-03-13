@@ -50,8 +50,7 @@ import design from "~/config/design";
         v-if="
           data.lightningaddress == 'cypher@npub.cash' ||
           data.btcadress == '' ||
-          data.orderwebhook ==
-            ''
+          data.orderwebhook == ''
         "
       >
         <div class="flex">
@@ -101,15 +100,13 @@ import design from "~/config/design";
           <div class="mt-10 flex items-center justify-center gap-x-6">
             <NuxtLink
               :to="localePath('/shop')"
-              class="rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+            class="block max-w-48 w-full px-3.5 py-2.5 text-center text-sm font-semibold text-white disabled:opacity-60 disabled:cursor-not-allowed farm-button-primary"
               >{{ t("viewProjectsButton") }}</NuxtLink
             >
 
-
-
             <NuxtLink
               :to="localePath('/blog')"
-              class="text-sm font-semibold leading-6 text-gray-900 dark:text-white"
+            class="block max-w-48 w-full px-3.5 py-2.5 text-center text-sm font-semibold text-white disabled:opacity-60 disabled:cursor-not-allowed farm-button-primary"
               >{{ t("getStartedLink") }}
               <span aria-hidden="true">→</span></NuxtLink
             >

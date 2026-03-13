@@ -51,8 +51,7 @@ const npubToHex = (npub) => {
 
 const skHex = npubToHex(data.nostradmin);
 
-const fetchedEvent = ref('');
-
+const fetchedEvent = ref("");
 
 // Watch for changes in the cartItems array
 watch(
@@ -60,24 +59,19 @@ watch(
   () => {
     totalItems.value = store.getTotalItems();
   },
-  { deep: true }
+  { deep: true },
 );
-
-
-
 
 watch(fetchedEvent, (newVal) => {
   if (newVal) {
     try {
       eventData.value = JSON.parse(newVal);
     } catch (error) {
-      console.error('Error parsing event data:', error);
+      console.error("Error parsing event data:", error);
       eventData.value = null;
     }
   }
 });
-
-
 
 onMounted(async () => {
   totalItems.value = store.getTotalItems();
@@ -93,21 +87,18 @@ onMounted(async () => {
   if (event && event.content) {
     fetchedEvent.value = event.content;
   } else {
-    fetchedEvent.value = 'No event content found';
+    fetchedEvent.value = "No event content found";
   }
 
-  console.log(fetchedEvent.value)
-
+  console.log(fetchedEvent.value);
 });
 
 const eventData = ref(null);
-
-
 </script>
 
 <template>
   <header
-    class="bg-colorBgLight dark:bg-colorBgDark backdrop-blur-sm fixed w-full z-50 shadow-2xl dark:shadow-gray-700"
+    class="farm-grain-bg backdrop-blur-sm fixed w-full z-50 border-b border-[var(--farm-border)] shadow-xl"
   >
     <nav
       class="mx-auto flex max-w-7xl items-center justify-between p-2 lg:px-8"
@@ -130,9 +121,16 @@ const eventData = ref(null);
             :alt="data.name"
           /> -->
 
+          <img
+            v-if="eventData && eventData.picture"
+            :src="eventData.picture"
+            :alt="eventData.name || data.name"
+            class="m-2 ml-2 h-10 w-10 rounded-full object-cover"
+          />
+
           <span
             v-if="eventData"
-            class="m-2 ml-4 text-2xl font-black dark:text-white uppercase"
+            class="m-2 ml-2 mt-3.5 text-xl font-black uppercase farm-title"
             >{{ eventData.name }}</span
           >
         </NuxtLink>
@@ -183,7 +181,7 @@ const eventData = ref(null);
           :to="localePath(item.href)"
           v-for="item in menu.Headernavigation.basicmenu"
           :key="item.name"
-          class="text-sm font-semibold leading-6 text-black dark:text-white"
+          class="text-sm font-semibold leading-6 farm-title"
         >
           {{ item.name }}</NuxtLink
         >
@@ -191,14 +189,14 @@ const eventData = ref(null);
         <NuxtLink
           v-if="data.blog"
           :to="localePath('/notes')"
-          class="text-sm font-semibold leading-6 text-black dark:text-white"
+          class="text-sm font-semibold leading-6 farm-title"
         >
           {{ menu.Headernavigation.bloglabel }}</NuxtLink
         >
 
         <NuxtLink
           v-if="data.shop"
-          class="text-sm font-semibold leading-6 text-black dark:text-white"
+          class="text-sm font-semibold leading-6 farm-title"
           :to="localePath('/shop')"
         >
           {{ menu.Headernavigation.shoplabel }}
@@ -206,7 +204,7 @@ const eventData = ref(null);
 
         <NuxtLink
           v-if="data.contact"
-          class="text-sm font-semibold leading-6 text-black dark:text-white"
+          class="text-sm font-semibold leading-6 farm-title"
           :to="localePath('/contact')"
         >
           Contact
@@ -214,7 +212,7 @@ const eventData = ref(null);
 
         <Popover class="relative" v-if="menu.Headernavigation.MenuPopupName">
           <PopoverButton
-            class="flex items-center gap-x-1 text-sm font-semibold leading-6 text-black dark:text-white"
+            class="flex items-center gap-x-1 text-sm font-semibold leading-6 farm-title"
           >
             {{ menu.Headernavigation.MenuPopupName }}
             <ChevronDownIcon
@@ -296,7 +294,7 @@ const eventData = ref(null);
         </NuxtLink>
 
         <a
-          :href="'nostr:' +data.nostradmin"
+          :href="'nostr:' + data.nostradmin"
           target="_blank"
           class="text-colorHighLight hover:text-colorHoverHighLight dark:text-colorHighDark dark:hover:text-colorHoverHighDark inline-block mx-3"
         >
@@ -359,14 +357,14 @@ const eventData = ref(null);
       >
         <div class="flex items-center justify-between">
           <NuxtLink to="/" class="-m-1.5 p-1.5">
-          <span
-            v-if="eventData"
-            class="m-2 ml-4 text-2xl font-black dark:text-white uppercase"
-            >{{ eventData.name }}</span
-          >
-        </NuxtLink>
+            <span
+              v-if="eventData"
+              class="m-2 ml-4 text-2xl font-black dark:text-white uppercase"
+              >{{ eventData.name }}</span
+            >
+          </NuxtLink>
 
-<!-- 
+          <!-- 
 
 
             <img

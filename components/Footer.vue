@@ -20,7 +20,7 @@ const npubToHex = (npub) => {
 
 const skHex = npubToHex(data.nostradmin);
 
-const fetchedEvent = ref('');
+const fetchedEvent = ref("");
 
 onMounted(async () => {
   const ndk = new NDK({ explicitRelayUrls: data.relays });
@@ -34,7 +34,7 @@ onMounted(async () => {
   if (event && event.content) {
     fetchedEvent.value = event.content;
   } else {
-    fetchedEvent.value = 'No event content found';
+    fetchedEvent.value = "No event content found";
   }
 
   // console.log(fetchedEvent.value);
@@ -47,26 +47,23 @@ watch(fetchedEvent, (newVal) => {
     try {
       eventData.value = JSON.parse(newVal);
     } catch (error) {
-      console.error('Error parsing event data:', error);
+      console.error("Error parsing event data:", error);
       eventData.value = null;
     }
   }
 });
 
-
-
-
 const currentDate = new Date();
 </script>
 <template>
   <footer
-    class="bg-colorBgLight dark:bg-colorBgDark border-t-4"
+    class="farm-grain-bg border-t border-[var(--farm-border)]"
     aria-labelledby="footer-heading"
   >
     <h2 id="footer-heading" class="sr-only">Footer</h2>
     <div class="mx-auto max-w-7xl px-3 pb-8 pt-12 lg:px-8">
       <!-- <div class="xl:grid xl:grid-cols-3 xl:gap-8"> -->
-        <div> 
+      <div>
         <div class="text-center">
           <!-- <img
             v-if="data.logo"
@@ -83,7 +80,7 @@ const currentDate = new Date();
 
           <span
             v-if="eventData"
-            class="mt-1.5 ml-4 text-2xl font-bold dark:text-white uppercase"
+            class="mt-1.5 ml-4 text-xl font-bold uppercase farm-title"
             >{{ eventData.name }}</span
           >
 
@@ -188,9 +185,7 @@ const currentDate = new Date();
         class="mx-auto max-w-7xl px-6 py-2 md:flex md:items-center md:justify-between lg:px-8"
       >
         <div class="flex w-full justify-center space-x-6 md:order-2">
-          <p
-            class="text-xs leading-5 text-black dark:text-black dark:text-white mt-1"
-          >
+          <p class="text-xs leading-5 mt-1 farm-subtitle">
             &copy; {{ currentDate.getFullYear() }} {{ data.name }}, Inc. All
             Rights Preserved, No Cookies Served
           </p>

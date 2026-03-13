@@ -1,11 +1,11 @@
 <template>
-  <div class="isolate px-6 py-24 sm:py-24 lg:px-8">
+  <div class="isolate px-6 py-24 sm:py-24 lg:px-8 farm-grain-bg rounded-2xl">
     <div
       class="absolute inset-x-0 top-[-10rem] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[-20rem]"
       aria-hidden="true"
     >
       <div
-        class="relative left-1/2 -z-10 aspect-[1155/678] w-[36.125rem] max-w-none -translate-x-1/2 rotate-[30deg] bg-gradient-to-tr from-[#ff80b5] to-[#9089fc] opacity-30 sm:left-[calc(50%-40rem)] sm:w-[72.1875rem]"
+        class="relative left-1/2 -z-10 aspect-[1155/678] w-[36.125rem] max-w-none -translate-x-1/2 rotate-[30deg] opacity-30 sm:left-[calc(50%-40rem)] sm:w-[72.1875rem]"
         style="
           clip-path: polygon(
             74.1% 44.1%,
@@ -29,15 +29,13 @@
       />
     </div>
     <div class="mx-auto max-w-2xl text-center">
-      <h2
-        class="text-3xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-4xl"
-      >
+      <h2 class="text-3xl font-bold tracking-tight sm:text-4xl farm-title">
         {{ t("title") }}
       </h2>
     </div>
 
     <div
-      class="mt-12 rounded-md bg-yellow-50 p-4 max-w-4xl mx-auto border-2 border-black dark:border-white"
+      class="mt-12 farm-status-note farm-status-note--error max-w-4xl mx-auto"
       v-if="warning === 'error'"
     >
       <div class="flex">
@@ -57,7 +55,7 @@
     </div>
 
     <div
-      class="mt-12 rounded-md bg-green-50 p-4 max-w-4xl mx-auto border-2 border-black dark:border-white"
+      class="mt-12 farm-status-note farm-status-note--success max-w-4xl mx-auto"
       v-if="warning === 'success'"
     >
       <div class="flex">
@@ -79,7 +77,7 @@
     <div
       class="mx-auto mt-16 max-w-6xl sm:mt-20 grid grid-cols-1 lg:grid-cols-5 gap-10 items-start"
     >
-      <div class="lg:col-span-3">
+      <div class="lg:col-span-3 farm-panel p-6 sm:p-8">
         <div class="grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2">
           <div>
             <label
@@ -93,7 +91,7 @@
                 name="first-name"
                 v-model="firstname"
                 autocomplete="given-name"
-                class="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                class="block w-full px-3.5 py-2 shadow-sm sm:text-sm sm:leading-6 farm-input"
               />
             </div>
           </div>
@@ -111,7 +109,7 @@
                 v-model="email"
                 required
                 autocomplete="email"
-                class="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                class="block w-full px-3.5 py-2 shadow-sm sm:text-sm sm:leading-6 farm-input"
               />
             </div>
           </div>
@@ -128,7 +126,7 @@
                 name="npub"
                 v-model="npub"
                 autocomplete="npub"
-                class="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                class="block w-full px-3.5 py-2 shadow-sm sm:text-sm sm:leading-6 farm-input"
               />
             </div>
           </div>
@@ -144,7 +142,7 @@
                 name="message"
                 v-model="message"
                 rows="4"
-                class="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                class="block w-full px-3.5 py-2 shadow-sm sm:text-sm sm:leading-6 farm-input"
               />
             </div>
           </div>
@@ -154,7 +152,7 @@
           <button
             @click="sendForm()"
             :disabled="isSubmitting"
-            class="block w-full rounded-md bg-indigo-600 px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 disabled:opacity-60 disabled:cursor-not-allowed focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+            class="block w-full px-3.5 py-2.5 text-center text-sm font-semibold text-white disabled:opacity-60 disabled:cursor-not-allowed farm-button-primary"
           >
             {{ isSubmitting ? "Sending..." : t("letsTalk") }}
           </button>
@@ -162,9 +160,7 @@
       </div>
 
       <aside class="lg:col-span-2">
-        <div
-          class="rounded-2xl border border-gray-300 dark:border-gray-700 bg-white/80 dark:bg-black/50 p-6 shadow-xl lg:sticky lg:top-24"
-        >
+        <div class="farm-panel p-6 lg:sticky lg:top-24">
           <p
             class="text-xs uppercase tracking-widest text-gray-500 dark:text-gray-400"
           >

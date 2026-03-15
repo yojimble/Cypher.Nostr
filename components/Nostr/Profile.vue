@@ -1,5 +1,5 @@
 <template>
-  <div class="mx-auto p-4 mt-10 relative">
+  <div class="mx-auto p-4 mt-8 relative">
     <UiLoadingBuffer v-if="isLoading" />
     <div v-else-if="eventData" class="p-6 relative z-10 text-center">
       <div class="flex justify-center mb-4">
@@ -23,16 +23,16 @@
         <p>{{ eventData.about || "No About Information" }}</p>
       </div>
 
-      <div class="mt-10 flex items-center justify-center gap-x-6">
+      <div class="mt-10 flex items-center justify-center gap-x-6 flex-col sm:flex-row">
         <NuxtLink
           :to="localePath('/shop')"
-            class="block max-w-48 w-full px-3.5 py-2.5 text-center text-sm font-semibold text-white disabled:opacity-60 disabled:cursor-not-allowed farm-button-primary"
+            class="my-2 sm:my-0 block max-w-48 w-full px-3.5 py-2.5 text-center text-sm font-semibold text-white disabled:opacity-60 disabled:cursor-not-allowed farm-button-primary"
           >{{ t("viewProjectsButton") }}</NuxtLink
         >
 
         <NuxtLink
           :to="localePath('/notes')"
-            class="block max-w-48 w-full px-3.5 py-2.5 text-center text-sm font-semibold text-white disabled:opacity-60 disabled:cursor-not-allowed farm-button-primary"
+            class="my-2 sm:my-0 block max-w-48 w-full px-3.5 py-2.5 text-center text-sm font-semibold text-white disabled:opacity-60 disabled:cursor-not-allowed farm-button-primary"
           >{{ t("getStartedLink") }} <span aria-hidden="true">→</span></NuxtLink
         >
       </div>

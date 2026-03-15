@@ -110,13 +110,13 @@ const eventData = ref(null);
 
           <!-- <img
             v-if="data.logo"
-            :class="[data.logodark ? 'block dark:hidden h-12' : '', '']"
+            :class="[data.logodark ? 'block dark:hidden h-8 sm:h-12' : '', '']"
             :src="'/project/' + data.logoimage"
             :alt="data.name"
           />
           <img
             v-if="data.logodark"
-            class="hidden dark:block h-12"
+            class="hidden dark:block h-8 sm:h-12"
             :src="'/project/' + data.logodarkimage"
             :alt="data.name"
           /> -->
@@ -125,12 +125,12 @@ const eventData = ref(null);
             v-if="eventData && eventData.picture"
             :src="eventData.picture"
             :alt="eventData.name || data.name"
-            class="m-2 ml-2 h-10 w-10 rounded-full object-cover"
+            class="mt-1.5 sm:m-2 sm:ml-2 h-8  sm:h-10 sm:w-10 rounded-full object-cover"
           />
 
           <span
             v-if="eventData"
-            class="m-2 ml-2 mt-3.5 text-xl font-black uppercase farm-title"
+            class="m-2 ml-2 mt-3.5 text-sm sm:text-xl font-black uppercase farm-title"
             >{{ eventData.name }}</span
           >
         </NuxtLink>
@@ -359,7 +359,7 @@ const eventData = ref(null);
           <NuxtLink to="/" class="-m-1.5 p-1.5">
             <span
               v-if="eventData"
-              class="m-2 ml-4 text-2xl font-black dark:text-white uppercase"
+              class="m-2 ml-4 text-lg font-black dark:text-white uppercase"
               >{{ eventData.name }}</span
             >
           </NuxtLink>

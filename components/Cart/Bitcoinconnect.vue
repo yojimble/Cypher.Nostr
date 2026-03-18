@@ -796,10 +796,20 @@
             <div class="mt-10" v-if="!payswitch">
               <button
                 @click="paymentstart()"
-                class="w-full px-4 py-3 text-base font-medium text-white farm-button-primary"
+                :disabled="isCreatingInvoice"
+                class="w-full px-4 py-3 text-base font-medium text-white farm-button-primary disabled:opacity-60 disabled:cursor-not-allowed"
               >
-                {{ t("ContinuePay") }}
+                {{
+                  isCreatingInvoice ? "Creating invoice..." : t("ContinuePay")
+                }}
               </button>
+
+              <p
+                v-if="invoiceError"
+                class="mt-3 farm-status-note farm-status-note--error"
+              >
+                {{ invoiceError }}
+              </p>
 
               <p
                 v-if="orderDispatchMessage"
@@ -818,8 +828,9 @@
               </p>
             </div>
 
-            <div class="mt-10 text-center" v-if="payswitch">
+            <div class="mt-10 text-center" v-if="payswitch && invoice">
               <Bcbutton
+                :key="invoice"
                 :invoice="invoice"
                 :preimage="preimage"
                 class="mx-auto"
@@ -986,46 +997,80 @@ import { LightningAddress } from "@getalby/lightning-tools";
 const invoice = ref("");
 const preimage = ref("");
 const payswitch = ref(false);
+const isCreatingInvoice = ref(false);
+const invoiceError = ref("");
+let checkPaymentInterval = null;
+
+const clearPaymentInterval = () => {
+  if (checkPaymentInterval) {
+    clearInterval(checkPaymentInterval);
+    checkPaymentInterval = null;
+  }
+};
 
 async function paymentstart() {
-  payswitch.value = true;
+  if (isCreatingInvoice.value) return;
+
+  isCreatingInvoice.value = true;
+  invoiceError.value = "";
+  payswitch.value = false;
+  invoice.value = "";
+  preimage.value = "";
+  clearPaymentInterval();
+
   const includeShipping = isShippingVisible.value == true;
 
   // Declare local variable to hold invoice object
   let lightningInvoice;
+  try {
+    totalPriceBtc.value = includeShipping
+      ? calculateTotalPriceBtc(true)
+      : calculateTotalPriceBtc(false);
 
-  if (isShippingVisible.value == true) {
-    totalPriceBtc.value = calculateTotalPriceBtc(true);
+    const sats = Math.max(
+      1,
+      Math.round(Number(totalPriceBtc.value || 0) * 100000000),
+    );
+    if (!Number.isFinite(sats) || sats <= 0) {
+      throw new Error("Invalid invoice amount");
+    }
 
     const ln = new LightningAddress(ticker.lightningaddress);
     await ln.fetch();
-    lightningInvoice = await ln.requestInvoice({
-      satoshi: (totalPriceBtc.value * 100000000).toFixed(0),
-    });
-    invoice.value = lightningInvoice.paymentRequest;
-  } else {
-    totalPriceBtc.value = calculateTotalPriceBtc(false);
+    lightningInvoice = await ln.requestInvoice({ satoshi: String(sats) });
 
-    const ln = new LightningAddress(ticker.lightningaddress);
-    await ln.fetch();
-    lightningInvoice = await ln.requestInvoice({
-      satoshi: (totalPriceBtc.value * 100000000).toFixed(0),
-    });
+    if (!lightningInvoice?.paymentRequest) {
+      throw new Error("Invoice was not returned by lightning endpoint");
+    }
+
     invoice.value = lightningInvoice.paymentRequest;
+    payswitch.value = true;
+
+    console.log(`Invoice: ${lightningInvoice.paymentRequest}`);
+    console.log(`Payment hash: ${lightningInvoice.paymentHash}`);
+
+    // Check every few seconds to see if the invoice is paid
+    checkPaymentInterval = setInterval(async () => {
+      const paid = await lightningInvoice.verifyPayment();
+      if (paid && lightningInvoice.preimage) {
+        console.log(`Preimage: ${lightningInvoice.preimage}`);
+        preimage.value = lightningInvoice.preimage;
+        clearPaymentInterval();
+      }
+    }, 3000);
+  } catch (error) {
+    invoiceError.value =
+      error instanceof Error
+        ? error.message
+        : "Unable to create a Lightning invoice right now.";
+    payswitch.value = false;
+    invoice.value = "";
+    console.error("Invoice creation failed", error);
+    isCreatingInvoice.value = false;
+    return;
   }
 
-  console.log(`Invoice: ${lightningInvoice.paymentRequest}`);
-  console.log(`Payment hash: ${lightningInvoice.paymentHash}`);
-
-  // Check every few seconds to see if the invoice is paid
-  const checkPaymentInterval = setInterval(async () => {
-    const paid = await lightningInvoice.verifyPayment();
-    if (paid && lightningInvoice.preimage) {
-      console.log(`Preimage: ${lightningInvoice.preimage}`);
-      preimage.value = lightningInvoice.preimage;
-      clearInterval(checkPaymentInterval);
-    }
-  }, 3000);
+  isCreatingInvoice.value = false;
 
   // SENDING OFF THE DATA
   const orderMessage = buildOrderMessage({
@@ -1073,6 +1118,10 @@ async function paymentstart() {
     console.error("Order dispatch failed", error);
   }
 }
+
+onBeforeUnmount(() => {
+  clearPaymentInterval();
+});
 
 const randomId = function (length = 6) {
   return Math.random()

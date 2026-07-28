@@ -16,6 +16,7 @@
   "defaultlanguage": "en",
   "blog": true,
   "shop": true,
+  "hideOutOfStock": true,
   "contact": true,
   "cart": "latest",
   "checkout": "full",

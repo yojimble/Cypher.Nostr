@@ -321,7 +321,7 @@ onMounted(async () => {
   isLoading.value = true;
   try {
     const ndk = new NDK({ explicitRelayUrls: setup.relays });
-    await withTimeout(ndk.connect(), 8000, "Relay connection");
+    await withTimeout(ndk.connect(2000), 8000, "Relay connection");
 
     const filter = { kinds: [20], authors: [skHex] };
     const fetchedEvents = await withTimeout(

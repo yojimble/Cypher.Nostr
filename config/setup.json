@@ -17,6 +17,9 @@
   "blog": true,
   "shop": true,
   "hideOutOfStock": true,
+  "shopfilters": {
+    "specs": ["Flavour"]
+  },
   "contact": true,
   "cart": "latest",
   "checkout": "full",

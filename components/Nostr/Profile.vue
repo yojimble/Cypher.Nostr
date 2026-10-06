@@ -23,16 +23,18 @@
         <p>{{ eventData.about || "No About Information" }}</p>
       </div>
 
-      <div class="mt-10 flex items-center justify-center gap-x-6 flex-col sm:flex-row">
+      <div
+        class="mt-10 flex items-center justify-center gap-x-6 flex-col sm:flex-row"
+      >
         <NuxtLink
           :to="localePath('/shop')"
-            class="my-2 sm:my-0 block max-w-48 w-full px-3.5 py-2.5 text-center text-sm font-semibold text-white disabled:opacity-60 disabled:cursor-not-allowed farm-button-primary"
+          class="my-2 sm:my-0 block max-w-48 w-full px-3.5 py-2.5 text-center text-sm font-semibold text-white disabled:opacity-60 disabled:cursor-not-allowed farm-button-primary"
           >{{ t("viewProjectsButton") }}</NuxtLink
         >
 
         <NuxtLink
           :to="localePath('/notes')"
-            class="my-2 sm:my-0 block max-w-48 w-full px-3.5 py-2.5 text-center text-sm font-semibold text-white disabled:opacity-60 disabled:cursor-not-allowed farm-button-primary"
+          class="my-2 sm:my-0 block max-w-48 w-full px-3.5 py-2.5 text-center text-sm font-semibold text-white disabled:opacity-60 disabled:cursor-not-allowed farm-button-primary"
           >{{ t("getStartedLink") }} <span aria-hidden="true">→</span></NuxtLink
         >
       </div>
@@ -162,7 +164,7 @@ onMounted(async () => {
 
     const filter = { kinds: [0], authors: [skHex] };
     const event = await withTimeout(
-      ndk.fetchEvent(filter),
+      fetchNewestEvent(ndk, filter),
       10000,
       "Profile fetch",
     );

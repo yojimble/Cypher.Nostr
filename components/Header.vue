@@ -82,7 +82,7 @@ onMounted(async () => {
 
   const filter = { kinds: [0], authors: [skHex] };
 
-  const event = await ndk.fetchEvent(filter);
+  const event = await fetchNewestEvent(ndk, filter);
 
   if (event && event.content) {
     fetchedEvent.value = event.content;
@@ -125,7 +125,7 @@ const eventData = ref(null);
             v-if="eventData && eventData.picture"
             :src="eventData.picture"
             :alt="eventData.name || data.name"
-            class="mt-1.5 sm:m-2 sm:ml-2 h-8  sm:h-10 sm:w-10 rounded-full object-cover"
+            class="mt-1.5 sm:m-2 sm:ml-2 h-8 sm:h-10 sm:w-10 rounded-full object-cover"
           />
 
           <span

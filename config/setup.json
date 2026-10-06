@@ -4,6 +4,8 @@
   "maintenancemode": false,
   "nostradmin": "npub1xa8wjw3n7wm0zq2rycqc856hmcgcf26ax8r9m2m8wjwwwdnzxdrsr64spj",
   "relays": [
+    "wss://relay.ditto.pub",
+    "wss://nostr.oxtr.dev",
     "wss://relay.plebeian.market",
     "wss://relay.damus.io",
     "wss://relay.primal.net",
